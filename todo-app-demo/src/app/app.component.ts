@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'todo-app-demo';
+  title = 'Başlık burada olacak';
+  paragraph = "Bu da bir paragraf yazısı olacak";
+
+  creator: string = 'Türkay Ürkmez'
+  generatedDate: string = 'Kasım 2025' 
+
+  isChecked:boolean = true;
 }
