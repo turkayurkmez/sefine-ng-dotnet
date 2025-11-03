@@ -1,4 +1,8 @@
+<app-menu></app-menu>
+
 <div class="container">
+    
+
     <h1>{{ title }}</h1>
     <h3 [innerText]="title"></h3>
     <p>
@@ -12,7 +16,9 @@
 
     <p>{{myTodoItem.task}}</p>
     <p>Şu anda toplam {{ todoList.length }} adet iş tanımlı</p>
-    <p>Tamamlanan iş: {{ getCompletedItemsCount() }}</p>
+    <p>Tamamlanmamış iş: {{ getInCompletedItemsCount() }}</p>
+
+    <button class="btn btn-success" (click)="filter()" >{{ customButtonText }}</button>
 
 
     <div>
