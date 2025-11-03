@@ -22,6 +22,8 @@ export class AppComponent {
     new TodoItem('.net ile api uygulaması geliştir',true),
     new TodoItem('DB oluştur',false)
   ];
+
+  textData:string ='';
   
   /**
    *
@@ -29,6 +31,15 @@ export class AppComponent {
   constructor() {
     this.myTodoItem.task='Çiçekleri sula';
     
+  }
+
+  getCompletedItemsCount(): number{
+
+    //todoList array'i içindeki isDone özelliği true olanları filtrele ve
+    //eleman sayısını döndür.
+
+    return this.todoList.filter(t => t.isDone).length;
+
   }
 
 

@@ -9,6 +9,24 @@
     </p>
     <input type="checkbox" [checked]="isChecked">Seçili mi?
 
+
     <p>{{myTodoItem.task}}</p>
-    <p>Şu andan toplam {{ todoList.length }} adet iş tanımlı</p>
+    <p>Şu anda toplam {{ todoList.length }} adet iş tanımlı</p>
+    <p>Tamamlanan iş: {{ getCompletedItemsCount() }}</p>
+
+
+    <div>
+        <div class="todo" *ngFor="let todo of todoList" >
+            <input type="checkbox" class="form-check-input" [(ngModel)]="todo.isDone" name="" id=""> {{todo.task}}
+            <span class="badge rounded-pill" [ngClass]="todo.isDone ? 'bg-info':'bg-danger'">{{ todo.isDone ? 'Yapıldı':'Yapılmadı' }}</span>
+
+        </div>
+    </div>
+
+
+    <div>
+        <input type="text" [(ngModel)]="textData" >
+        <span>{{ textData }}</span>
+    </div>
+
 </div>
