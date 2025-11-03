@@ -1,9 +1,14 @@
-<h1>{{ title }}</h1>
-<h3 [innerText]="title"></h3>
-<p>
-    {{paragraph}}
-</p>
-<p>
-    Bu içerik, {{creator}} tarafından {{generatedDate}} tarihinde oluşturulmuştur.
-</p> 
-<input type="checkbox" [checked]="isChecked">Seçili mi?
+<div class="container">
+    <h1>{{ title }}</h1>
+    <h3 [innerText]="title"></h3>
+    <p>
+        {{paragraph}}
+    </p>
+    <p>
+        Bu içerik, {{creator}} tarafından {{generatedDate}} tarihinde oluşturulmuştur.
+    </p>
+    <input type="checkbox" [checked]="isChecked">Seçili mi?
+
+    <p>{{myTodoItem.task}}</p>
+    <p>Şu andan toplam {{ todoList.length }} adet iş tanımlı</p>
+</div>

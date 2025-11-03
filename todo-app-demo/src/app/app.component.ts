@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TodoItem } from './models/todoItem.model'
 
 @Component({
   selector: 'app-root',
@@ -13,4 +14,22 @@ export class AppComponent {
   generatedDate: string = 'Kasım 2025' 
 
   isChecked:boolean = true;
+
+  myTodoItem: TodoItem = new TodoItem('Çiçekleri sula',false);
+
+  todoList: TodoItem[] = [
+    new TodoItem('Angular Öğren',false),
+    new TodoItem('.net ile api uygulaması geliştir',true),
+    new TodoItem('DB oluştur',false)
+  ];
+  
+  /**
+   *
+   */
+  constructor() {
+    this.myTodoItem.task='Çiçekleri sula';
+    
+  }
+
+
 }
