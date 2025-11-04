@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Project } from '../models/project.model';
+import { projects } from '../models/mocks/projects.mock';
 
 @Component({
   selector: 'app-project-list',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class ProjectListComponent {
 
+   allProjects: Project[] = projects;
+   
 }

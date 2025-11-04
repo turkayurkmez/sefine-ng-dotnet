@@ -1,11 +1,7 @@
 <p>project-list works!</p>
-<div class="row">
+<div class="row" *ngFor="let project of allProjects">
     <div class="col-12">
-        <app-project></app-project>
+        <app-project [activeProject]="project"></app-project>
     </div>    
 </div>
-<div class="row">
-    <div class="col-12">
-        <app-project></app-project>
-    </div>    
-</div>
+

@@ -9,17 +9,17 @@ export const projects: Project[] =[
     ]),
 
      new Project(2, 'Project B', 'Project B açıklama', new Date(2025,10,4),0.15,1,[
-        new Task(4,"Task A - Project B","Task a açıklama",new Date(2025,10,4),1,false),
-        new Task(5,"Task B - Project B","Task b açıklama",new Date(2025,10,4),1,false),
-        new Task(6,"Task C - Project B","Task x açıklama",new Date(2025,10,4),1,false)
+        new Task(4,"Task A1 - Project B","Task a açıklama",new Date(2025,10,4),1,false),
+        new Task(5,"Task B1 - Project B","Task b açıklama",new Date(2025,10,4),1,false),
+        new Task(6,"Task C1 - Project B","Task x açıklama",new Date(2025,10,4),1,false)
 
 
     ]),
 
-     new Project(1, 'Project C', 'Project C açıklama', new Date(2025,10,4),0.15,1,[
-        new Task(7,"Task A - Project C","Task a açıklama",new Date(2025,10,4),1,false),
-        new Task(8,"Task B - Project C","Task b açıklama",new Date(2025,10,4),1,false),
-        new Task(9,"Task C - Project C","Task x açıklama",new Date(2025,10,4),1,false)
+     new Project(3, 'Project C', 'Project C açıklama', new Date(2025,10,4),0.15,1,[
+        new Task(7,"Task A2 - Project C","Task a açıklama",new Date(2025,10,4),1,false),
+        new Task(8,"Task B2 - Project C","Task b açıklama",new Date(2025,10,4),1,false),
+        new Task(9,"Task C2- Project C","Task x açıklama",new Date(2025,10,4),1,false)
 
 
     ])
