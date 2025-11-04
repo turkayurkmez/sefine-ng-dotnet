@@ -1,5 +1,5 @@
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let t of tasks">
-        <input type="checkbox" name="" id="" class="form-check-input">{{t.name}}
+        <input type="checkbox" [(ngModel)] = "t.isDone" name="" id="" class="form-check-input">{{t.name}}
     </li>
 </ul>

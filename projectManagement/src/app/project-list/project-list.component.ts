@@ -9,6 +9,8 @@ import { projects } from '../models/mocks/projects.mock';
 })
 export class ProjectListComponent {
 
-   allProjects: Project[] = projects;
+   allProjects?: Project[] = projects;
+
+   key: string = '';
    
 }

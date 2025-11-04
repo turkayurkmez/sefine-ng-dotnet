@@ -1,9 +1,13 @@
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">{{ project?.name }}</h4>
+        <h4 class="card-title">{{ project?.name | titlecase}}
+            <span [ngClass]="isTasksFound ? 'show':'hide'" class="badge rounded-pill bg-dark float-end">Kalan görev: {{ incompletedTasksCount }}</span>
+        </h4>
         <p class="card-text">{{ project?.description }}</p>
-        <p class="card-text">{{ project?.completedPercent }}</p>
-        <p class="card-text">{{ project?.startDate }}</p>
+        <p class="card-text">{{ project?.completedPercent | percent }}</p>
+        <p class="card-text">{{ project?.startDate | date : 'longDate'}}</p>
+
+        <button (click)="selectAll()" class="btn btn-danger">Tümünü seç</button>
         <app-task-list [allTasks]="project?.tasks"></app-task-list>
 
     </div>

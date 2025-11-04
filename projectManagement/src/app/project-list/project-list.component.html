@@ -1,7 +1,13 @@
-<p>project-list works!</p>
-<div class="row" *ngFor="let project of allProjects">
-    <div class="col-12">
-        <app-project [activeProject]="project"></app-project>
-    </div>    
+<div *ngIf="allProjects; else notFound">
+    <input type="text" name="" id="" class="form-control" [(ngModel)]="key">
+    <div class="row" *ngFor="let project of allProjects | search : key">
+        <div class="col-12">
+            <app-project [activeProject]="project"></app-project>
+        </div>
+    </div>
 </div>
-
+<ng-template #notFound>
+    <div class="alert alert-danger">
+        Veri alınamadı....
+    </div>
+</ng-template>
