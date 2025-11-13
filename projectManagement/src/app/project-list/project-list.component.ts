@@ -18,6 +18,8 @@ export class ProjectListComponent implements OnInit {
     console.log(this.route.params);
 
     this.route.params.subscribe(value =>{ 
+
+      console.log('route parametresi değişti');
       console.log(value['departmentId']);
       if(value['departmentId']){
         this.filteredProjects = this.allProjects?.filter(prj => prj.departmentId == +value['departmentId']);
