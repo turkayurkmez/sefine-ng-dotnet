@@ -16,7 +16,6 @@ export class ProjectListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.route.params);
-
     this.route.params.subscribe(value =>{ 
 
       console.log('route parametresi değişti');
