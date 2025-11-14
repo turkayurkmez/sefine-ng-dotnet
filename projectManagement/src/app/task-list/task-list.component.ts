@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../models/task.model';
+import { DepartmentService } from '../services/department.service';
 
 @Component({
   selector: 'app-task-list',
@@ -8,9 +9,13 @@ import { Task } from '../models/task.model';
 })
 export class TaskListComponent implements OnInit {
 
+  constructor() { }
   
   ngOnInit(): void {
    console.log("ngOnInit metodu çalıştı....")
+ 
+
+  
   }
 
   @Input('allTasks') tasks?: Task[];
