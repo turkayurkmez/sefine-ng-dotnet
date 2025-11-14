@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagement.API.Models;
+using ProjectManagement.API.Services;
 
 namespace ProjectManagement.API.Controllers
 {
@@ -8,17 +9,20 @@ namespace ProjectManagement.API.Controllers
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
+
+        private readonly IDepartmentService _departmentsService;
+
+        public DepartmentsController(IDepartmentService departmentService)
+        {
+            _departmentsService = departmentService;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
-            var departments = new List<Department>
-            {
-                new Department { Id =1, Name ="Bilgi Teknolojileri"},
-                new Department { Id =2, Name ="İnsan Kaynakları"},
-                new Department { Id =3, Name ="Satın Alma"},
-                new Department { Id =4, Name ="Pazarlama"}
-            };
-
+            //dependecy injection ile Program.cs üzerinde oluşturulan IDepartmentService interface'ini implemente eden nesneyi kullanıyoruz. 
+            //DepartmentService departmentService = new DepartmentService();
+            var departments = _departmentsService.GetDepartments();
             return Ok(departments);
         }
     }

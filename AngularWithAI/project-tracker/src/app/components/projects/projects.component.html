@@ -1,0 +1,46 @@
+<div class="container" *ngIf="department">
+  <div class="header">
+    <button class="btn-back" (click)="goBack()">← Geri</button>
+    <h1>{{ department.name }} - Projeler</h1>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card" 
+         *ngFor="let project of projects"
+         (click)="viewTasks(project.id)">
+      <div class="card-header">
+        <h2>{{ project.name }}</h2>
+      </div>
+      <p class="description">{{ project.description }}</p>
+      
+      <div class="project-stats" *ngIf="getProjectStats(project.id) as stats">
+        <div class="stat-item">
+          <span class="stat-label">Toplam Task:</span>
+          <span class="stat-value">{{ stats.totalTasks }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Tamamlanan:</span>
+          <span class="stat-value completed">{{ stats.completedTasks }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Kalan:</span>
+          <span class="stat-value remaining">{{ stats.remainingTasks }}</span>
+        </div>
+        
+        <div class="progress-bar-container">
+          <div class="progress-bar" [style.width.%]="stats.completionPercentage"></div>
+        </div>
+        <div class="completion-text">{{ stats.completionPercentage }}% Tamamlandı</div>
+      </div>
+      
+      <div class="card-footer">
+        <span class="start-date">Başlangıç: {{ project.startDate | date:'dd/MM/yyyy' }}</span>
+        <button class="btn-view">Task'ları Görüntüle →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!department">
+  <p class="error-message">Departman bulunamadı!</p>
+</div>

@@ -1,4 +1,7 @@
 //1. Kýsým: uygulama çalýþýrken kullanýlacak nesnelerin yapýlandýrmalarý
+using ProjectManagement.API.Data;
+using ProjectManagement.API.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,6 +29,11 @@ builder.Services.AddCors(opt =>
          */
     });
 });
+
+builder.Services.AddScoped<IDepartmentService, EFDepartmentService>();
+
+builder.Services.AddDbContext<ProjectManagementDbContext>();
+
 
 
 var app = builder.Build();

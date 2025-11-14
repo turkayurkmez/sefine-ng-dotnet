@@ -1,0 +1,75 @@
+<div class="container" *ngIf="project">
+  <div class="header">
+    <button class="btn-back" (click)="goBack()">← Geri</button>
+    <h1>{{ project.name }}</h1>
+  </div>
+
+  <div class="project-info">
+    <p class="description">{{ project.description }}</p>
+    
+    <div class="stats-summary" *ngIf="projectStats">
+      <div class="stat-box">
+        <div class="stat-number">{{ projectStats.totalTasks }}</div>
+        <div class="stat-label">Toplam Task</div>
+      </div>
+      <div class="stat-box completed">
+        <div class="stat-number">{{ projectStats.completedTasks }}</div>
+        <div class="stat-label">Tamamlanan</div>
+      </div>
+      <div class="stat-box remaining">
+        <div class="stat-number">{{ projectStats.remainingTasks }}</div>
+        <div class="stat-label">Kalan Task</div>
+      </div>
+      <div class="stat-box progress">
+        <div class="stat-number">{{ projectStats.completionPercentage }}%</div>
+        <div class="stat-label">Tamamlanma</div>
+      </div>
+    </div>
+
+    <div class="progress-section" *ngIf="projectStats">
+      <div class="progress-bar-container">
+        <div class="progress-bar" [style.width.%]="projectStats.completionPercentage"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tasks-section">
+    <h2>Task Listesi</h2>
+    
+    <div class="tasks-list">
+      <div class="task-item" 
+           *ngFor="let task of tasks"
+           [ngClass]="getTaskStatusClass(task)"
+           (click)="toggleTask(task.id)">
+        <div class="task-checkbox">
+          <input type="checkbox" 
+                 [checked]="task.isCompleted"
+                 (click)="$event.stopPropagation()">
+        </div>
+        <div class="task-content">
+          <h3 class="task-title">{{ task.title }}</h3>
+          <p class="task-description">{{ task.description }}</p>
+          <div class="task-meta">
+            <span class="task-date">Oluşturulma: {{ task.createdDate | date:'dd/MM/yyyy' }}</span>
+            <span class="task-completed-date" *ngIf="task.completedDate">
+              Tamamlanma: {{ task.completedDate | date:'dd/MM/yyyy' }}
+            </span>
+          </div>
+        </div>
+        <div class="task-status">
+          <span class="status-badge" [class.completed]="task.isCompleted">
+            {{ task.isCompleted ? 'Tamamlandı' : 'Devam Ediyor' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="tasks.length === 0">
+      <p>Bu projede henüz task bulunmamaktadır.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!project">
+  <p class="error-message">Proje bulunamadı!</p>
+</div>
