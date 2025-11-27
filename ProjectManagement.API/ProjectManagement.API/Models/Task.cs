@@ -1,6 +1,6 @@
 ﻿namespace ProjectManagement.API.Models
 {
-    public class Task
+    public class Task : IDBEntity
     {
         public int Id { get; set; }
         public string? Name { get; set; }

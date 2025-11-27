@@ -1,21 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectManagement.API.Data;
 using ProjectManagement.API.Models;
+using ProjectManagement.API.Repositories;
+using System.Threading.Tasks;
 
 namespace ProjectManagement.API.Services
 {
     public class EFDepartmentService : IDepartmentService
     {
-        private readonly ProjectManagementDbContext dbContext;
+        private readonly IDepartmentRepository repository;
 
-        public EFDepartmentService(ProjectManagementDbContext dbContext)
+        public EFDepartmentService(IDepartmentRepository departmentRepository)
         {
-            this.dbContext = dbContext;
+            this.repository = departmentRepository;
         }
 
-        public List<Department> GetDepartments()
+        public async Task<List<Department>> GetDepartments()
         {
-            var departments = dbContext.Departments.ToList();    
+            var departments = await repository.GetAllAsync();
             return departments;
         }
     }
