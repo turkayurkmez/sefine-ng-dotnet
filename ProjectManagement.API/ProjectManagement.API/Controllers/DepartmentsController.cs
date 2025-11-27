@@ -90,7 +90,7 @@ namespace ProjectManagement.API.Controllers
             {
                 return Ok(new { isSuccess = true, message = "Silme işlemi başarılı." });
             }
-            return BadRequest(new { isSuccess = false, message = "Silme işlemi başarısız. Bit hata oluştu..." });
+            return BadRequest(new { isSuccess = false, message = "Silme işlemi başarısız. Bir hata oluştu..." });
         }
 
 
