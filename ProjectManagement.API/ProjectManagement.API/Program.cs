@@ -1,5 +1,6 @@
 //1. Kýsým: uygulama çalýþýrken kullanýlacak nesnelerin yapýlandýrmalarý
 using ProjectManagement.API.Data;
+using ProjectManagement.API.Repositories;
 using ProjectManagement.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,7 @@ builder.Services.AddCors(opt =>
 });
 
 builder.Services.AddScoped<IDepartmentService, EFDepartmentService>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository> ();
 
 builder.Services.AddDbContext<ProjectManagementDbContext>();
 

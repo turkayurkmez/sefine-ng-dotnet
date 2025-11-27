@@ -1,6 +1,18 @@
 @ProjectManagement.API_HostAddress = http://localhost:5152
 
-GET {{ProjectManagement.API_HostAddress}}/weatherforecast/
+GET {{ProjectManagement.API_HostAddress}}/api/departments
 Accept: application/json
 
 ###
+@departmentId = 3
+GET {{ProjectManagement.API_HostAddress}}/api/departments/{{departmentId}}
+Accept: application/json
+
+###
+POST {{ProjectManagement.API_HostAddress}}/api/departments
+Content-Type: application/json
+
+{
+  "name": "New Department"
+ 
+}

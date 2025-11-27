@@ -2,7 +2,7 @@
 
 namespace ProjectManagement.API.Services
 {
-    public class DepartmentService : IDepartmentService
+    public class DepartmentService //: IDepartmentService
     {
         private List<Department> departments;
         public DepartmentService()

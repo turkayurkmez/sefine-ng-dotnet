@@ -12,14 +12,28 @@ namespace ProjectManagement.API.Repositories
         {
             _context = context;
         }
-        public Task<Department> CreateAsync(Department entity)
+        public async Task<Department> CreateAsync(Department entity)
         {
-            throw new NotImplementedException();
+            await _context.Departments.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var department = await _context.Departments.FirstOrDefaultAsync(d => d.Id == id);
+                _context.Departments.Remove(department);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
         }
 
         public async Task<IEnumerable<Department>> GetAllAsync()
@@ -27,14 +41,21 @@ namespace ProjectManagement.API.Repositories
             return await _context.Departments.ToListAsync();
         }
 
-        public Task<Department?> GetByIdAsync(int id)
+        public async Task<Department?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Departments.FirstOrDefaultAsync(d => d.Id == id);
         }
 
-        public Task<Department?> UpdateAsync(Department entity)
+        public async Task<bool> IsExistsAsync(int id)
         {
-            throw new NotImplementedException();
+           return await _context.Departments.AnyAsync(d => d.Id == id);
+        }
+
+        public async Task<Department?> UpdateAsync(Department entity)
+        {
+           _context.Departments.Update(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
     }
 }
