@@ -31,8 +31,15 @@ builder.Services.AddCors(opt =>
     });
 });
 
+// Dependency Injection kayýtlarý
 builder.Services.AddScoped<IDepartmentService, EFDepartmentService>();
-builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository> ();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
+builder.Services.AddScoped<IProjectService, EFProjectService>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+
+builder.Services.AddScoped<ITaskService, EFTaskService>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 builder.Services.AddDbContext<ProjectManagementDbContext>();
 
