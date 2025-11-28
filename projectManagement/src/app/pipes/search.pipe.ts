@@ -6,12 +6,12 @@ import { Project } from '../models/project.model';
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(value: Project[], searchKey:string): Project[] {
+  transform(value: Project[] | undefined, searchKey:string): Project[] {
    
     return searchKey != undefined ?
-              value.filter(p=>p.name?.toLowerCase().includes(searchKey.toLowerCase()))
+              value!.filter(p=>p.name?.toLowerCase().includes(searchKey.toLowerCase()))
               :
-              value;       
+              value!;       
     
 
 

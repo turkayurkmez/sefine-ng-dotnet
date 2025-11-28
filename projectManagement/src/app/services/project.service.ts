@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Project } from '../models/project.model';
 import { projects } from '../models/mocks/projects.mock';
+import { HttpClient } from '@angular/common/http';
 
 //beni enjekte edebilirsin:
 @Injectable({
@@ -10,13 +11,12 @@ import { projects } from '../models/mocks/projects.mock';
 })
 export class ProjectService {
 
-  projectList: Observable<Project[]> ;
-  constructor() { 
-    this.projectList = from([projects]);
+  
+  constructor(private httpClient: HttpClient) {   
 
   }
 
   getProjects(): Observable<Project[]> {
-    return this.projectList;
+    return this.httpClient.get<Project[]>('https://localhost:7110/api/Projects/with-tasks');
   }
 }
