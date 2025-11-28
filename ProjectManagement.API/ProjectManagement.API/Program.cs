@@ -1,7 +1,10 @@
 //1. Kýsým: uygulama çalýþýrken kullanýlacak nesnelerin yapýlandýrmalarý
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using ProjectManagement.API.Data;
 using ProjectManagement.API.Repositories;
 using ProjectManagement.API.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +46,24 @@ builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 builder.Services.AddDbContext<ProjectManagementDbContext>();
 
+builder.Services.AddScoped<IUserService, UserService>();
 
+//TOKEN onaylama mekanizmasý:
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "server",
+            ValidAudience = "client",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("bu-alan-token-icinde-sifrelenecek"))
+        };
+    });
 
 var app = builder.Build();
 
@@ -59,6 +79,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("allow");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

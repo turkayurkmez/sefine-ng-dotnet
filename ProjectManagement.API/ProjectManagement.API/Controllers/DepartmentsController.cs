@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagement.API.Models;
 using ProjectManagement.API.Models.DataTransferObjects;
@@ -40,6 +42,7 @@ namespace ProjectManagement.API.Controllers
 
         }
 
+        [Authorize(Roles = "Admin,Editor")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateDepartmentRequest department)
         {
