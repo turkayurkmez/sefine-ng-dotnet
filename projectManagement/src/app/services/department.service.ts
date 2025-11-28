@@ -3,6 +3,7 @@ import { Department } from '../models/department.model';
 import { departments } from '../models/mocks/departments.mock';
 import { Observable, catchError, from, map, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class DepartmentService {
 
   url: string = 'https://localhost:7110/api/Departments';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
     //bir koleksiyonu observable a çevirmek için from isimli rxjs operatörünü kullandık:
     //this.departmentList = from([departments]);
   }
@@ -27,7 +28,8 @@ export class DepartmentService {
   }
   addDepartment(department: Department): Observable<Department> 
   {
-     let headers = { 'Content-Type': 'application/json' };
+     let headers = { 'Content-Type': 'application/json',
+                     'Authorization':'Bearer '+ this.authService.getToken() };
      let options = { headers: headers };
 
       return this.httpClient.post<Department>(this.url, department, options)

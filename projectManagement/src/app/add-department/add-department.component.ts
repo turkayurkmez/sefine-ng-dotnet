@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Department } from '../models/department.model';
 import { NgForm } from '@angular/forms';
 import { DepartmentService } from '../services/department.service';
+import { MessagesService } from '../services/messages.service';
 
 @Component({
   selector: 'app-add-department',
@@ -12,7 +13,7 @@ export class AddDepartmentComponent {
 
   department: Department = new Department();
 
-  constructor(private departmentService: DepartmentService) { }
+  constructor(private departmentService: DepartmentService, private messagesService: MessagesService) { }
 
   submitDepartment(form:NgForm):void{
     if(form.valid){
@@ -26,7 +27,8 @@ export class AddDepartmentComponent {
           form.resetForm();
         },
         error:(error:Error)=>{
-          console.error('Departman eklenirken hata oluştu!!!:', error);
+     
+          this.messagesService.showMessage('Departman eklenirken bir hata oluştu: ' + error.message);
         }
        })
     }

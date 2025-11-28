@@ -21,7 +21,9 @@ export class ProjectService {
 
   createProject(project: Project): Observable<Project> {
     //header ve options ayararını yaptıktan sonra hata alacak biçimde post isteği gönder:
-    let headers = { 'Content-Type': 'application/json' };
+    let headers = { 'Content-Type': 'application/json',
+                     'Authorization':'Basic '+ btoa('user1:password123')
+     };
     let options = { headers: headers };
     return this.httpClient
       .post<Project>('https://localhost:7110/api/Projects', project, options)
