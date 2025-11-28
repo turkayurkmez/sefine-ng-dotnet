@@ -1,0 +1,1 @@
+npm i devextreme@23.2 devextreme-angular@23.2 --save
